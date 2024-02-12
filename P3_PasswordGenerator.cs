@@ -9,7 +9,6 @@ namespace Projects
     internal class Project3
     {
         static Random random = new Random();
-        static char randomLetter, randomSymbol, randomNum;
         public static void Main(string[] args)
         {
             List<char> password = new List<char>();
@@ -25,55 +24,34 @@ namespace Projects
             Console.Write("How many letters would you like? ");
 
             int letter = Convert.ToInt32(Console.ReadLine());
-
-            for (int x = 0; x < letter; x++)
-            {
-                int index = random.Next(0, letters.Length);
-                randomLetter = letters[index];
-                password.Add(randomLetter);
-            }
+            Randomizer(letter, letters, password);
 
             Console.Write("How many symbols would you like? ");
 
             int symbol = Convert.ToInt32(Console.ReadLine());
-
-            for (int x = 0; x < symbol; x++)
-            {
-                int index = random.Next(0, symbols.Length);
-                randomSymbol = symbols[index];
-                password.Add(randomSymbol);
-            }
+            Randomizer(symbol, symbols, password);
 
             Console.Write("How many numbers would you like? ");
 
             int num = Convert.ToInt32(Console.ReadLine());
-
-            for (int x = 0; x < num; x++)
-            {
-                int index = random.Next(0, numbers.Length);
-                randomNum = numbers[index];
-                password.Add(randomNum);
-            }
+            Randomizer(num, numbers, password);
 
             password = password.OrderBy(c => random.Next()).ToList();
 
             string passwordFinal = new string (password.ToArray());
 
-            Console.WriteLine("Your password is: " + passwordFinal);
+            Console.WriteLine("Your generated password is: " + passwordFinal);
         }
-        /*
-        int Randomizer(int anon, char[] type, List<char> password) 
+        
+        static void Randomizer(int count, char[] type, List<char> password) 
         {
-            for (int x = 0; x < anon; x++)
+            for (int x = 0; x < count; x++)
             {
                 int index = random.Next(0, type.Length);
-                randomNum = type[index];
-                password.Add(randomNum);
+                char randomChar = type[index];
+                password.Add(randomChar);
             }
-
-            return password;
         }
-        */
 
     }
 }
